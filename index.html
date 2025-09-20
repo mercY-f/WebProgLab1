@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История города Донецк</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем Leaflet CSS и JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <i class="fas fa-city"></i>
+                    Донецк
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#" onclick="showPage('home')" class="active">Главная</a></li>
+                    <li><a href="#" onclick="showPage('history')">История</a></li>
+                    <li><a href="#" onclick="showPage('infrastructure')">Инфраструктура</a></li>
+                    <li><a href="#" onclick="showPage('culture')">Культура</a></li>
+                    <li><a href="#" onclick="showPage('contact')">Обратная связь</a></li>
+                    <li><a href="#" onclick="showPage('about')">О разработчике</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Главная страница -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h1>Город Донецк</h1>
+                <p>Промышленный и культурный центр Донбасса с богатой историей и уникальным наследием</p>
+            </div>
+
+            <article class="card">
+                <h2>О городе</h2>
+                <p>Донецк — крупный промышленный город, основанный в <time datetime="1869">1869 году</time> как <mark>Юзовка</mark>. Город расположен в юго-восточной части Украины и является административным центром Донецкой области. Донецк известен своей угольной промышленностью, металлургией и как город, где зародился знаменитый футбольный клуб «Шахтёр».</p>
+                
+                <details>
+                    <summary>Подробнее о географическом положении</summary>
+                    <div>
+                        <p>Донецк расположен в степной зоне на реке Кальмиус. Город находится в 80 км от Азовского моря и занимает площадь около 385 квадратных километров. Климат умеренно-континентальный с мягкой зимой и жарким летом.</p>
+                    </div>
+                </details>
+            </article>
+
+            <section class="card">
+                <h2>Фотогалерея города</h2>
+                <div class="photo-gallery">
+                    <figure class="photo-item" data-title="Донбасс Арена">
+                        <img src="images/donbass-arena.jpg" alt="Стадион Донбасс Арена">
+                        <figcaption class="sr-only">Стадион Донбасс Арена</figcaption>
+                    </figure>
+                    <figure class="photo-item" data-title="Бульвар Пушкина">
+                        <img src="images/pushkin-boulevard.jpg" alt="Центральный бульвар Пушкина">
+                        <figcaption class="sr-only">Центральный бульвар Пушкина</figcaption>
+                    </figure>
+                    <figure class="photo-item" data-title="Парк кованых фигур">
+                        <img src="images/park-forged.jpg" alt="Парк кованых фигур">
+                        <figcaption class="sr-only">Уникальный парк кованых скульптур</figcaption>
+                    </figure>
+                    <figure class="photo-item" data-title="Донецкий академический театр">
+                        <img src="images/theater.jpg" alt="Донецкий академический театр">
+                        <figcaption class="sr-only">Главный театр города</figcaption>
+                    </figure>
+                    <figure class="photo-item" data-title="Ботанический сад">
+                        <img src="images/botanical-garden.jpg" alt="Донецкий ботанический сад">
+                        <figcaption class="sr-only">Донецкий ботанический сад</figcaption>
+                    </figure>
+                    <figure class="photo-item" data-title="Терриконы">
+                        <img src="images/terrikony.jpg" alt="Терриконы">
+                        <figcaption class="sr-only">Символ Донбасса — терриконы</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <aside class="card">
+                <h2>Актуальные события</h2>
+                <div class="news-grid">
+                    <article class="news-item">
+                        <div class="news-date">15 августа 2025</div>
+                        <h3>День города Донецк</h3>
+                        <p>Ежегодное празднование Дня города с культурными мероприятиями и концертами в центральном парке.</p>
+                    </article>
+                    <article class="news-item">
+                        <div class="news-date">10 сентября 2025</div>
+                        <h3>Фестиваль "Донбасс-жемчужина"</h3>
+                        <p>Международный фестиваль искусств с участием творческих коллективов из разных стран.</p>
+                    </article>
+                    <article class="news-item">
+                        <div class="news-date">5 октября 2025</div>
+                        <h3>Открытие нового культурного центра</h3>
+                        <p>В центре города открывается современный многофункциональный культурный комплекс.</p>
+                    </article>
+                </div>
+            </aside>
+        </section>
+
+        <!-- История города -->
+        <section id="history" class="page">
+            <div class="card">
+                <h1>История города Донецк</h1>
+                <p>История Донецка насчитывает более полутора веков. Город прошёл путь от небольшого промышленного поселения до крупного индустриального центра.</p>
+                
+                <table class="history-table">
+                    <caption>Ключевые события в истории города</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Событие</th>
+                            <th scope="col">Значение</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><time datetime="1869">1869</time></td>
+                            <td>Основание Юзовки</td>
+                            <td>Джон Юз основал металлургический завод, положив начало городу</td>
+                        </tr>
+                        <tr>
+                            <td><time datetime="1924">1924</time></td>
+                            <td>Переименование в Сталино</td>
+                            <td>Город получил новое название в честь И.В. Сталина</td>
+                        </tr>
+                        <tr>
+                            <td><time datetime="1932-1933">1932-1933</time></td>
+                            <td>Голодомор</td>
+                            <td>Трагические события, повлиявшие на развитие региона</td>
+                        </tr>
+                        <tr>
+                            <td><time datetime="1941-1943">1941-1943</time></td>
+                            <td>Немецкая оккупация</td>
+                            <td>Город был оккупирован немецкими войсками, серьёзные разрушения</td>
+                        </tr>
+                        <tr>
+                            <td><time datetime="1961">1961</time></td>
+                            <td>Переименование в Донецк</td>
+                            <td>Город получил современное название по реке Северский Донец</td>
+                        </tr>
+                        <tr>
+                            <td><time datetime="1970">1970</time></td>
+                            <td>Миллионный житель</td>
+                            <td>Донецк достиг численности населения в 1 миллион человек</td>
+                        </tr>
+                        <tr>
+                            <td><time datetime="1996">1996</time></td>
+                            <td>Основание ФК "Шахтёр"</td>
+                            <td>Создание футбольного клуба, ставшего символом города</td>
+                        </tr>
+                        <tr>
+                            <td><time datetime="2009">2009</time></td>
+                            <td>Открытие Донбасс Арены</td>
+                            <td>Построен современный футбольный стадион европейского уровня</td>
+                        </tr>
+                        <tr>
+                            <td><time datetime="2012">2012</time></td>
+                            <td>Чемпионат Европы по футболу</td>
+                            <td>Донецк принимал матчи Евро-2012</td>
+                        </tr>
+                        <tr>
+                            <td><time datetime="2014">2014</time></td>
+                            <td>Начало конфликта</td>
+                            <td>События, кардинально изменившие жизнь города</td>
+                        </tr>
+                        <tr>
+                            <td><time datetime="2018">2018</time></td>
+                            <td>Культурное возрождение</td>
+                            <td>Открытие новых культурных центров и восстановление наследия</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Инфраструктура города -->
+        <section id="infrastructure" class="page">
+            <div class="card">
+                <h1>Инфраструктура Донецка</h1>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3><i class="fas fa-map-marker-alt"></i> Географическое положение</h3>
+                        <p><strong>Координаты:</strong> 48°00′ с.ш., 37°48′ в.д.</p>
+                        <p><strong>Высота:</strong> 169 м над уровнем моря</p>
+                        <p><strong>Площадь:</strong> 385 км²</p>
+                        <p><strong>Часовой пояс:</strong> UTC+2 (EET)</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-users"></i> Население</h3>
+                        <p><strong>Численность:</strong> ~900 тысяч человек</p>
+                        <p><strong>Плотность:</strong> 2 337 чел/км²</p>
+                        <p><strong>Агломерация:</strong> более 2 млн человек</p>
+                        <meter value="90" max="100" title="90% урбанизации">90%</meter>
+                        <small>Уровень урбанизации</small>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3><i class="fas fa-building"></i> Административное деление</h3>
+                        <ul>
+                            <li><strong>Ворошиловский район</strong> - центральная часть</li>
+                            <li><strong>Киевский район</strong> - северная часть</li>
+                            <li><strong>Кировский район</strong> - восточная часть</li>
+                            <li><strong>Ленинский район</strong> - западная часть</li>
+                            <li><strong>Петровский район</strong> - южная часть</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-bus"></i> Общественный транспорт</h3>
+                        <dl>
+                            <dt>Автобусы:</dt>
+                            <dd>Более 50 маршрутов, охватывающих всю городскую территорию</dd>
+                            
+                            <dt>Троллейбусы:</dt>
+                            <dd>15 троллейбусных маршрутов с электрическим питанием</dd>
+                            
+                            <dt>Трамваи:</dt>
+                            <dd>Трамвайная сеть с 6 основными маршрутами</dd>
+                            
+                            <dt>Маршрутки:</dt>
+                            <dd>Дополнительная сеть микроавтобусных маршрутов</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Культура и искусство -->
+        <section id="culture" class="page">
+            <div class="card">
+                <h1>Культура и искусство Донецка</h1>
+                <p>Донецк является важным культурным центром региона с богатыми традициями в области театра, музыки, изобразительного искусства и литературы.</p>
+
+                <div class="culture-grid">
+                    <div class="culture-card">
+                        <div class="culture-card-header">
+                            <i class="fas fa-theater-masks"></i>
+                        </div>
+                        <div class="culture-card-content">
+                            <h3>Донецкий академический театр оперы и балета</h3>
+                            <p>Основан в <time datetime="1941">1941 году</time>. Один из ведущих театров Украины, известный своими постановками классических и современных произведений.</p>
+                        </div>
+                    </div>
+
+                    <div class="culture-card">
+                        <div class="culture-card-header">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="culture-card-content">
+                            <h3>Донецкий художественный музей</h3>
+                            <p>Крупнейшая художественная коллекция региона, включающая произведения от древнерусского искусства до современности.</p>
+                        </div>
+                    </div>
+
+                    <div class="culture-card">
+                        <div class="culture-card-header">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <div class="culture-card-content">
+                            <h3>Донецкая филармония</h3>
+                            <p>Центр музыкальной культуры города, где выступают симфонический оркестр и камерные ансамбли мирового уровня.</p>
+                        </div>
+                    </div>
+
+                    <div class="culture-card">
+                        <div class="culture-card-header">
+                            <i class="fas fa-hammer"></i>
+                        </div>
+                        <div class="culture-card-content">
+                            <h3>Парк кованых фигур</h3>
+                            <p>Уникальный музей под открытым небом, демонстрирующий мастерство местных кузнецов и художников.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <details>
+                    <summary>Известные деятели культуры Донецка</summary>
+                    <div>
+                        <ul>
+                            <li><strong>Сергей Прокофьев</strong> - великий композитор, родился в Сонцовке под Донецком</li>
+                            <li><strong>Архип Куинджи</strong> - знаменитый художник-пейзажист</li>
+                            <li><strong>Василий Стус</strong> - поэт и переводчик</li>
+                            <li><strong>Иван Козловский</strong> - оперный певец</li>
+                            <li><strong>Леонид Быков</strong> - актёр и режиссёр</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <div class="sticky-note">
+                    <strong>Фестиваль "Донбасс-жемчужина"</strong> проходит ежегодно и собирает артистов со всего мира
+                </div>
+            </div>
+        </section>
+
+        <!-- Форма обратной связи -->
+        <section id="contact" class="page">
+            <div class="card">
+                <h1>Обратная связь</h1>
+                <p>Свяжитесь с нами для получения дополнительной информации о городе Донецк или оставьте свои предложения.</p>
+
+                <form class="contact-form" onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <label for="name">Имя <abbr title="Обязательное поле">*</abbr></label>
+                        <input type="text" id="name" name="name" required minlength="2" placeholder="Введите ваше имя">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email <abbr title="Обязательное поле">*</abbr></label>
+                        <input type="email" id="email" name="email" required placeholder="example@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" id="phone" name="phone" pattern="[+]?[0-9\s\-\(\)]{10,}" placeholder="+380 XX XXX XX XX">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Тема обращения</label>
+                        <select id="subject" name="subject">
+                            <option value="">Выберите тему</option>
+                            <option value="info">Запрос информации</option>
+                            <option value="suggestion">Предложение</option>
+                            <option value="complaint">Жалоба</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Сообщение <abbr title="Обязательное поле">*</abbr></label>
+                        <textarea id="message" name="message" required rows="6" minlength="10" placeholder="Введите ваше сообщение..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" required>
+                            Я согласен с <a href="#" target="_blank">политикой конфиденциальности</a>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox">
+                            Подписаться на новости города
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Отправить сообщение
+                    </button>
+                </form>
+            </div>
+        </section>
+
+<!-- О разработчике -->
+<section id="about" class="page">
+    <div class="card">
+        <h1>О разработчике</h1>
+
+        <div class="profile-section">
+            <div class="profile-photo float-left">
+            </div>
+            <div class="profile-info">
+                <h2>Власов Роман</h2>
+                <h3>Студент</h3>
+                <address>
+                    <strong>Город:</strong> Донецк, Донецкая область, Россия<br>
+                    <strong>Email:</strong> <a href="mailto:vlasovromansgmail@mail.ru">vlasovromansgmail@mail.ru</a><br>
+                    <strong>Телефон:</strong> <a href="tel:+380777777777">+380 77 777 77 77</a>
+                </address>
+
+                <p>Студент Донецкого Государственного университета, физико-технический факультет, кафедра компьютерных технологий.</p>
+
+                <blockquote>
+                    <p>"Это пример описания разработчика, созданный для демонстрации структуры страницы."</p>
+                </blockquote>
+            </div>
+        </div>
+
+        <div class="skills-container">
+            <h3>Профессиональные навыки</h3>
+
+            <div class="skill">
+                <div class="skill-name">
+                    <span><i class="fab fa-html5"></i> HTML5</span>
+                    <span>10%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 10%"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-name">
+                    <span><i class="fab fa-css3-alt"></i> CSS3</span>
+                    <span>10%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 10%"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-name">
+                    <span><i class="fab fa-js"></i> JavaScript</span>
+                    <span>5%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 5%"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-name">
+                    <span><i class="fab fa-cuttlefish"></i> C#</span>
+                    <span>35%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 35%"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-name">
+                    <span><i class="fab fa-cuttlefish"></i> C++</span>
+                    <span>25%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 25%"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-name">
+                    <span><i class="fab fa-python"></i> Python</span>
+                    <span>40%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 40%"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-name">
+                    <span><i class="fas fa-database"></i> SQL</span>
+                    <span>60%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 60%"></div>
+                </div>
+            </div>
+        </div>
+
+        <details>
+            <summary>Образование и сертификаты</summary>
+            <div>
+                <ul>
+                    <li><strong>Пример:</strong> Этот блок создан для демонстрации структуры и может быть дополнен реальными данными.</li>
+                </ul>
+            </div>
+        </details>
+
+        <progress value="5" max="100">5%</progress>
+        <small>Общий прогресс изучения веб-технологий</small>
+    </div>
+</section>
+
+    </main>
+
+    <footer>
+        <p>&copy; <time datetime="2025">2025</time> История города Донецк. Все права защищены.</p>
+        <p><small>Сайт создан в образовательных целях</small></p>
+        <div class="footer-links">
+            <a href="mailto:info@donetsk-history.ua">info@donetsk-history.ua</a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <div class="fixed-badge">
+        <i class="fas fa-heart"></i>
+        <span class="sr-only">Сделано с любовью</span>
+    </div>
+</body>
+</html>
